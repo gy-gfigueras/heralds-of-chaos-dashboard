@@ -11,5 +11,6 @@ export function mapCreature(raw: any): Creature {
     name: raw.name ?? '',
     description: raw.description ?? '',
     image: raw.image ?? '',
+    race: raw.race ?? '',
   };
 }

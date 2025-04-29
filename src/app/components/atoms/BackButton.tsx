@@ -9,6 +9,8 @@ interface BackButtonProps {
 }
 
 export default function BackButton({ path }: BackButtonProps) {
+    const cleanPath = path.replace(/[{}]/g, '');
+
     return (
         <Box display={['none', 'none', 'flex']}>
             <Link
@@ -27,7 +29,7 @@ export default function BackButton({ path }: BackButtonProps) {
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}
-                href={path}
+                href={cleanPath}
             >
                 <ArrowBackIosNewIcon
                     sx={{
@@ -35,7 +37,6 @@ export default function BackButton({ path }: BackButtonProps) {
                         fontSize: '20px',
                         marginRight: '10px',
                         marginBottom: '2px',
-
                     }}
                 />
                 BACK

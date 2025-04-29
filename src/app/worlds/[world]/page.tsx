@@ -2,7 +2,7 @@
 'use client';
 import { cormorantGaramond, elMessiri } from '@/utils/fonts/fonts';
 import { Box, Typography } from '@mui/material';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useWorld } from '@/hooks/useWorld';
@@ -10,8 +10,9 @@ import BackButton from '@/app/components/atoms/BackButton';
 import { oscurecerColor } from '@/utils/functions/DarkColor';
 import { mutate } from 'swr';
 
-export default function CharacterPage() {
+export default function WorldPage() {
     const { world } = useParams();
+    const router = useRouter();
     const { data: worldFetched, isLoading, isValidating, error: isErrorWorld } = useWorld(world as string);
 
     const [darkColor, setDarkColor] = useState<string>();
@@ -136,7 +137,7 @@ export default function CharacterPage() {
                     textAlign: 'center',
                 })}
             >
-                {worldFetched!.description || 'No identifier available'}
+                {worldFetched?.description || 'No identifier available'}
             </Typography>
 
             <Box
@@ -159,6 +160,7 @@ export default function CharacterPage() {
                 }}>
                 {worldFetched?.places.map((place) => (
                     <Box
+                        onClick={() => router.push(`/worlds/${world}/${place.identifier}`)}
                         key={place.identifier}
                         sx={(theme) => ({
                             width: ['80%', '255px', '255px'],
@@ -177,7 +179,7 @@ export default function CharacterPage() {
                             border: `2px solid ${worldFetched.mainColor}`,
                             textAlign: 'center',
                             position: 'relative',
-
+                            cursor: 'pointer',
                         })}>
                         <Image src={place.image} alt={place.name} width={1920} height={1080}
                             style={{

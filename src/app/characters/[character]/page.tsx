@@ -124,7 +124,7 @@ export default function CharacterPage() {
                         fontFamily: cormorantGaramond.style.fontFamily,
                         fontSize: ['20px', '22px', '24px'],
                         color: theme.palette.mode === 'dark' ? '#E1e1e1' : '#inherit',
-                        width: ["80%", '100%'],
+                        width: ["80%", "80%", "80%", '1200px'],
                         textAlign: 'center',
                     })}
                 >
@@ -133,7 +133,7 @@ export default function CharacterPage() {
                 <Box
                     sx={(theme) => ({
                         width: ['80%', '255px', '255px'],
-                        marginTop: '20px',
+                        marginTop: '70px',
                         height: ['250px', '250px', '309px'],
                         borderRadius: '8px',
                         backgroundColor:

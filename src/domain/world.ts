@@ -1,10 +1,4 @@
-export interface Place {
-  identifier: string;
-  name: string;
-  description: string;
-  image: string;
-  inGame: boolean;
-}
+import Place from './place';
 
 export interface World {
   identifier: string;

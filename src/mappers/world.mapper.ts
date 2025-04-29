@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Place, World } from '@/domain/world';
-
+import { World } from '@/domain/world';
+import Place from '@/domain/place';
 export function mapToWorld(data: any): World {
   return {
     identifier: data.identifier,
@@ -17,7 +17,6 @@ export function mapToWorld(data: any): World {
         name: place.name,
         description: place.description,
         image: place.image,
-        inGame: place.inGame,
       })
     ),
   };
