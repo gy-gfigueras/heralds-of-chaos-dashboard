@@ -1,6 +1,7 @@
 import { Character } from '@/domain/character';
 import useSWR from 'swr';
 import { getCharacters } from '@/services/characters';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface useCharactersProps {
   data: Character[] | undefined;
@@ -22,9 +23,18 @@ const WORLD_ORDER = [
 ];
 
 export function useCharacters(): useCharactersProps {
+  const { language } = useLanguage();
+
   const { data, isLoading, error } = useSWR(
-    '/api/data/characters',
-    getCharacters
+    `/api/data/characters?lang=${language}`,
+    () => getCharacters(language),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000, // 1 minuto
+      keepPreviousData: true,
+      suspense: false,
+    }
   );
 
   const getCharactersByWorldOrder = () => {

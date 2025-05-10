@@ -8,9 +8,9 @@ export const POST = async (req: NextRequest) => {
   try {
     const baseUrl = process.env.GY_API?.replace(/['"]/g, '');
     const body = await req.json();
-    const { identifier } = body;
+    const { identifier, language } = body;
 
-    const apiUrl = `${baseUrl}/heraldsofchaos/characters/get?id=${identifier}&lang=en`;
+    const apiUrl = `${baseUrl}/heraldsofchaos/characters/get?id=${identifier}&lang=${language}`;
     console.log('API URL:', apiUrl);
 
     const charactersResponse = await fetch(apiUrl, {

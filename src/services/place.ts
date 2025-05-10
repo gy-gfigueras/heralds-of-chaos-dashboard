@@ -2,12 +2,15 @@
 import Place from '@/domain/place';
 import { mapToPlace } from '@/mappers/place.mapper';
 
-export async function getPlace(identifier: string): Promise<Place> {
+export async function getPlace(
+  identifier: string,
+  language: string
+): Promise<Place> {
   try {
     console.log('Fetching place with identifier:', identifier);
     const response = await fetch(`/api/data/worlds/places/place/`, {
       method: 'POST',
-      body: JSON.stringify({ identifier }),
+      body: JSON.stringify({ identifier, lang: language }),
     });
 
     if (!response.ok) {

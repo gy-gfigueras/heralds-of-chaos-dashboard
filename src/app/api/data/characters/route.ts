@@ -1,19 +1,25 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { sendLog } from '@/utils/logs/logHelper';
 import { ELevel } from '@/utils/constants/ELevel';
 import { ELogs } from '@/utils/constants/ELogs';
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
     const baseUrl = process.env.GY_API?.replace(/['"]/g, '');
-    const apiUrl = `${baseUrl}/heraldsofchaos/characters/list?lang=en`;
-    console.log(apiUrl);
+    const searchParams = req.nextUrl.searchParams;
+    const language = searchParams.get('lang') || 'en';
+
+    const apiUrl = `${baseUrl}/heraldsofchaos/characters/list?lang=${language}`;
+    console.log('API URL:', apiUrl);
+
     const charactersResponse = await fetch(apiUrl, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
+
+    console.log('Characters Response:', charactersResponse);
 
     if (!charactersResponse.ok) {
       const errorText = await charactersResponse.text();
@@ -29,7 +35,7 @@ export const GET = async () => {
       status: 200,
     });
   } catch (error) {
-    console.error('Error in /api/auth/user:', error);
+    console.error('Error in /api/data/characters:', error);
 
     return NextResponse.json(
       { error: error instanceof Error ? error.message : ELogs.UNKNOWN_ERROR },

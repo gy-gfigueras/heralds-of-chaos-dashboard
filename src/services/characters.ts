@@ -2,9 +2,9 @@
 import { Character } from '@/domain/character';
 import { mapCharacter } from '@/mappers/character.mapper';
 
-export async function getCharacters(): Promise<Character[]> {
+export async function getCharacters(language: string): Promise<Character[]> {
   try {
-    const response = await fetch('/api/data/characters', {
+    const response = await fetch(`/api/data/characters?lang=${language}`, {
       method: 'GET',
     });
     if (!response.ok) {

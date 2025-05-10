@@ -3,9 +3,9 @@
 import { World } from '@/domain/world';
 import { mapToWorld } from '@/mappers/world.mapper';
 
-export async function getWorlds(): Promise<World[]> {
+export async function getWorlds(language: string): Promise<World[]> {
   try {
-    const response = await fetch('/api/data/worlds', {
+    const response = await fetch(`/api/data/worlds?lang=${language}`, {
       method: 'GET',
     });
     if (!response.ok) {

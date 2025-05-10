@@ -2,12 +2,15 @@
 import { Character } from '@/domain/character';
 import { mapCharacter } from '@/mappers/character.mapper';
 
-export async function getCharacter(identifier: string): Promise<Character> {
+export async function getCharacter(
+  identifier: string,
+  language: string
+): Promise<Character> {
   try {
     console.log('Fetching character with identifier:', identifier);
     const response = await fetch(`/api/data/characters/character/`, {
       method: 'POST',
-      body: JSON.stringify({ identifier }),
+      body: JSON.stringify({ identifier, language }),
     });
 
     console.log(response);

@@ -3,11 +3,14 @@
 import { World } from '@/domain/world';
 import { mapToWorld } from '@/mappers/world.mapper';
 
-export async function getWorld(identifier: string): Promise<World> {
+export async function getWorld(
+  identifier: string,
+  language: string
+): Promise<World> {
   try {
     const response = await fetch('/api/data/worlds/world', {
       method: 'POST',
-      body: JSON.stringify({ identifier }),
+      body: JSON.stringify({ identifier, lang: language }),
     });
 
     if (!response.ok) {
