@@ -9,7 +9,6 @@ import LoadingScreen from './components/organisms/LoadingScreen';
 import { AnimatePresence } from 'framer-motion';
 import { createAppTheme } from '@/utils/constants/theme';
 import { LanguageProvider } from '@/contexts/LanguageContext';
-import LanguageSwitch from './components/atoms/LanguageSwitch';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { data: user, isLoading: isLoadingUser } = useUser();
@@ -46,7 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <LanguageProvider>
-          <LanguageSwitch />
           <ThemeProvider theme={theme}>
             <UserProvider>
               <CssBaseline />

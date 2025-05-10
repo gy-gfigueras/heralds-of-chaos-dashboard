@@ -10,6 +10,7 @@ import Profile from './Profile';
 import BuildIcon from '@mui/icons-material/Build';
 import { ERole } from '@/utils/constants/roles.enum';
 import AnimatedAlert from '../atoms/Alert';
+import LanguageSelector from '../atoms/LanguageSelector';
 
 interface HeaderProps {
   user: User | undefined;
@@ -54,6 +55,7 @@ export default function Header({
       })}
     >
       <Box display="flex" alignItems="center" gap="1rem" height="100%">
+        <LanguageSelector />
         <ThemeSwitch theme={themeMode} setTheme={onThemeToggle} />
         {user?.roles && user?.roles.includes(ERole.ADMIN) && (
           <IconButton sx={{ marginRight: '8px' }} onClick={handleCLick}>
