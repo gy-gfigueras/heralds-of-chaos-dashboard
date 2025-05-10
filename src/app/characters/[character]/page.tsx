@@ -77,6 +77,7 @@ export default function CharacterPage() {
                     width: '100%',
                     height: '100%',
                     paddingTop: '20px',
+                    textAlign: 'center',
                 }}
             >
                 <Typography
