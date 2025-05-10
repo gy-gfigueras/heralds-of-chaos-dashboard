@@ -2,9 +2,9 @@
 import Item from '@/domain/item';
 import { mapItem } from '@/mappers/item.mapper';
 
-export async function getItems(): Promise<Item[]> {
+export async function getItems(language: string): Promise<Item[]> {
   try {
-    const response = await fetch('/api/data/items', {
+    const response = await fetch(`/api/data/items?lang=${language}`, {
       method: 'GET',
     });
 

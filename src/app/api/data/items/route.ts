@@ -1,12 +1,15 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { sendLog } from '@/utils/logs/logHelper';
 import { ELevel } from '@/utils/constants/ELevel';
 import { ELogs } from '@/utils/constants/ELogs';
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
+    const searchParams = req.nextUrl.searchParams;
+    const lang = searchParams.get('lang') || 'en';
+
     const baseUrl = process.env.GY_API?.replace(/['"]/g, '');
-    const apiUrl = `${baseUrl}/heraldsofchaos/items/list?lang=en`;
+    const apiUrl = `${baseUrl}/heraldsofchaos/items/list?lang=${lang}`;
     const itemsResponse = await fetch(apiUrl);
 
     if (!itemsResponse.ok) {

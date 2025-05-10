@@ -1,8 +1,11 @@
 import Creature from '@/domain/creature';
 import { mapCreature } from '@/mappers/creature.mapper';
-export default async function getCreatures(): Promise<Creature[]> {
+
+export default async function getCreatures(
+  language: string
+): Promise<Creature[]> {
   try {
-    const response = await fetch('/api/data/creatures', {
+    const response = await fetch(`/api/data/creatures?lang=${language}`, {
       method: 'GET',
     });
     if (!response.ok) {

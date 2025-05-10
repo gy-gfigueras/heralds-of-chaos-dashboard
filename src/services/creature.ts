@@ -2,12 +2,15 @@
 import Creature from '@/domain/creature';
 import { mapCreature } from '@/mappers/creature.mapper';
 
-export async function getCreature(identifier: string): Promise<Creature> {
+export async function getCreature(
+  identifier: string,
+  language: string
+): Promise<Creature> {
   try {
     console.log('Fetching creature with identifier:', identifier);
     const response = await fetch(`/api/data/creatures/creature/`, {
       method: 'POST',
-      body: JSON.stringify({ identifier }),
+      body: JSON.stringify({ identifier, lang: language }),
     });
 
     if (!response.ok) {

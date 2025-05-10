@@ -2,12 +2,15 @@
 import Item from '@/domain/item';
 import { mapItem } from '@/mappers/item.mapper';
 
-export async function getItem(identifier: string): Promise<Item> {
+export async function getItem(
+  identifier: string,
+  language: string
+): Promise<Item> {
   try {
     console.log('Fetching item with identifier:', identifier);
     const response = await fetch(`/api/data/items/item/`, {
       method: 'POST',
-      body: JSON.stringify({ identifier }),
+      body: JSON.stringify({ identifier, lang: language }),
     });
 
     if (!response.ok) {

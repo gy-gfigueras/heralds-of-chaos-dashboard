@@ -14,7 +14,7 @@ export default function ItemsPage() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value.toLowerCase();
         const filteredItems = data?.filter((item) =>
-            item.identifier.toLowerCase().includes(value)
+            item.name.toLowerCase().includes(value)
         );
         setItemsFiltered(filteredItems || []);
     };

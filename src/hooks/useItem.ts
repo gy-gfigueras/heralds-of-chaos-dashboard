@@ -2,6 +2,7 @@
 import useSWR from 'swr';
 import Item from '@/domain/item';
 import { getItem } from '@/services/item';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface useItemProps {
   data: Item | undefined;
@@ -9,10 +10,19 @@ interface useItemProps {
   error: Error | null;
   isValidating: boolean;
 }
+
 export function useItem(identifier: string): useItemProps {
-  const { data, isLoading, error, isValidating } = useSWR<Item>(
-    `/api/data/items/item/${identifier}`,
-    () => getItem(identifier)
+  const { language } = useLanguage();
+  const { data, isLoading, error, isValidating } = useSWR(
+    identifier
+      ? `/api/data/items/item?lang=${language}&id=${identifier}`
+      : null,
+    () => getItem(identifier, language),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000,
+    }
   );
 
   return {
