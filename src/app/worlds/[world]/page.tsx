@@ -148,7 +148,7 @@ export default function WorldPage() {
                     justifyContent: 'center',
                     width: '100%',
                     /*    height: '230px', */
-                    height: ['100%', '400px'],
+                    height: ['100%', '500px'],
 
                     marginTop: '20px',
                     gap: '20px',
@@ -180,6 +180,12 @@ export default function WorldPage() {
                             textAlign: 'center',
                             position: 'relative',
                             cursor: 'pointer',
+                            transition:
+                                'transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease',
+                            '&:hover': {
+                                transform: 'translateY(-8px)',
+                                boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.23)',
+                            }
                         })}>
                         <Image src={place.image} alt={place.name} width={1920} height={1080}
                             style={{
@@ -204,7 +210,14 @@ export default function WorldPage() {
                                 color: 'transparent',
                                 fontWeight: 'bold',
                                 textAlign: 'center',
-
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                lineHeight: '1.2',
+                                maxWidth: '100%',
+                                padding: '0 8px',
                             }}
                         >
                             {place.name}
