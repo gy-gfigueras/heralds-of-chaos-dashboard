@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.json();
     const { identifier, lang = 'en' } = body;
 
-    const apiUrl = `${baseUrl}/heraldsofchaos/worlds/get?id=${identifier}&lang=${lang}`;
+    const apiUrl = `${baseUrl}/heraldsofchaos/worlds/${identifier}?lang=${lang}`;
     console.log('API URL:', apiUrl);
 
     const charactersResponse = await fetch(apiUrl, {

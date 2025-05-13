@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.json();
     const { identifier, language } = body;
 
-    const apiUrl = `${baseUrl}/heraldsofchaos/characters/get?id=${identifier}&lang=${language}`;
+    const apiUrl = `${baseUrl}/heraldsofchaos/characters/${identifier}?lang=${language}`;
     console.log('API URL:', apiUrl);
 
     const charactersResponse = await fetch(apiUrl, {
